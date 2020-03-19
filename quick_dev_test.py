@@ -26,7 +26,7 @@ Y_dev = np.zeros((num_examples, Ty, 1))
 WAV_PATH = "/Users/mjain/Desktop/HeyJoe_data/raw_data_wav/dev_set/001/"
 
 
-filename3 = WAV_PATH + "16.wav"
+filename3 = WAV_PATH + "21.wav"
 #filename1 = "train.wav"
 
 #x = graph_spectrogram(filename1)
@@ -46,7 +46,7 @@ X_dev[0] = x.T
 # test the model on group of handlabeled examples
 # print result
 
-model = load_model('Models/my_model17_14002a2b_30e_100b_hl_sagem.h5')
+model = load_model('Models/my_model17_14002a_30e_100b_hl_sagem.h5')
 
 
 #loss, acc = model.evaluate(X_dev, Y_dev)
@@ -77,7 +77,8 @@ print("1100")
 print(predictions[0, 1100:1200, 0])
 print("1200")
 print(predictions[0, 1200:1300, 0])
-
+print("1300")
+print(predictions[0, 1300:1374, 0])
 
 
 
