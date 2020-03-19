@@ -159,8 +159,22 @@ Tried this, and:
 
 Non bg correction seems to be working worse (1400_2b_no_bg_corr.npy)
 
-The increase of Hey Joe in the training examples seems to have alleviated the problem significantly - 14002a model17 seems the best by spot checking. Bg correction does not seem to the issue.
+The increase of Hey Joe in the training examples seems to have alleviated the problem significantly - 14002a model17 seems the best by spot checking. Bg correction does not seem to be the issue.
 
+Add back in Background correction as before. 
+
+Created a new hand labeled dev set (X_hand_label_train2.npy) and use this one
+to choose between models 2a vs 2a2b. 2a has better performance (see heyjoe_test.py)
+
+Increasing number of activate words per training example seems to help the most. 
+
+----
+
+Create a new training set 2c (similar to 2a). Mix a new hand labeled set in with this
+and train again on Sagemaker, batches of 100, 30 epochs. 
+
+Test this new model on a third hand labeled dev set and evaluate performance of 
+this model vs. my_model17_2a
 
 ----
 To do:
@@ -171,6 +185,7 @@ Shuffle and save a shuffled set?
 
 INVESTIGATE and TEST other METRICS and optimization parameters
 
+Music as a background
 
 *****
 

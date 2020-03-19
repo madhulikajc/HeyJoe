@@ -7,6 +7,9 @@ from heyjoe_helper_functions import *
 
 # Global Variables
 
+TRAINING_PATH = "/Users/mjain/Desktop/HeyJoe_data/Training_Data/"
+RAW_AUDIO_PATH = "/Users/mjain/Desktop/HeyJoe_data/raw_data_wav/"
+
 # the number of time steps input to sequence model from spectrogram
 Tx = 5511 
 
@@ -20,7 +23,7 @@ Ty = 1375
 examples_pb = 100 #number of training examples created per background
 
 # Load Audio Segments using pydub
-activates, negatives, backgrounds = load_raw_audio()
+activates, negatives, backgrounds = load_raw_audio(RAW_AUDIO_PATH)
 print(len(backgrounds))
 
 def create_training_set():
@@ -41,7 +44,7 @@ def create_training_set():
 
     print(X.shape)
     print(Y.shape)
-    np.save('X1400f', X)
-    np.save('Y1400f', Y)
+    np.save(TRAINING_PATH + "X14002c", X)
+    np.save(TRAINING_PATH + "Y14002c", Y)
 
 create_training_set()

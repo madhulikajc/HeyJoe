@@ -27,10 +27,10 @@ def match_target_amplitude(sound, target_dBFS):
     return sound.apply_gain(change_in_dBFS)
 
 
-WAV_PATH = "/Users/mjain/Desktop/HeyJoe_data/raw_data_wav/"
+#WAV_PATH = "/Users/mjain/Desktop/HeyJoe_data/raw_data_wav/" -- now included in function call
 
 # Load raw audio files for speech synthesis
-def load_raw_audio():
+def load_raw_audio(WAV_PATH = "/Users/mjain/Desktop/HeyJoe_data/raw_data_wav/"):
     activates = []
     backgrounds = []
     negatives = []
