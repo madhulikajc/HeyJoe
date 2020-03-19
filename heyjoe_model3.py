@@ -19,7 +19,12 @@ Tx = 5511
 n_freq = 101
 Ty = 1375
 
-model = load_model('Models/my_model17_1400c_30_plushandlabel25.h5')
+MODEL_PATH = "Models/"
+MODEL_NAME = "my_model17_14002a_30e_100b_hl_sagem.h5"
+
+TRAINING_PATH = "Training_Data/"
+
+model = load_model(MODEL_PATH + MODEL_NAME)
 model.summary()
 
 opt = Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, decay=0.01)
@@ -27,12 +32,13 @@ opt = Adam(lr=0.0001, beta_1=0.9, beta_2=0.999, decay=0.01)
 model.compile(loss='binary_crossentropy', optimizer=opt, metrics=["accuracy"])
 
 
-# Load X and Y constructed examples with heyjoe and other words in them, for training (new examples)
-Xhl = np.load("Training_Data/X_hand_label_train.npy")
-Yhl = np.load("Training_Data/Y_hand_label_train.npy")
+# Load X and Y hand labeled examples with heyjoe and other words in them, for training
+Xhl = np.load(TRAINING_PATH + "X_hand_label_train2.npy")
+Yhl = np.load(TRAINING_PATH + "Y_hand_label_train2.npy")
 
-Xa = np.load("Training_Data/X1400d.npy")
-Ya = np.load("Training_Data/Y1400d.npy")
+# Load X and Y synthesized data sets with more #activates
+Xa = np.load(TRAINING_PATH + "X14002c.npy")
+Ya = np.load(TRAINING_PATH + "Y14002c.npy")
 
 print(Xhl.shape)
 #print(Yhl.shape)
@@ -51,10 +57,11 @@ Y = np.concatenate((Yhl, Ya))
 # On my computer minibatch size = 10 works well, but on Amazon AWS Sagemaker GPU instance
 # a larger minibatch size of 100 or 200 delivers the real speed improvement
 
-model.fit(X, Y, batch_size = 10, epochs=30, shuffle = True)
+model.fit(X, Y, batch_size = 100, epochs=30, shuffle = True)
 
 
-model.save('Models/my_model18_1400d_30_plushandlabel25.h5')    # save an iteration, next time load this filename and save another iteration
+model.save(MODEL_PATH + "my_model18_14002c_30e_100b_hl2_sagem.h5")    
+
 
 
 
