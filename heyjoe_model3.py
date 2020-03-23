@@ -33,19 +33,19 @@ model.compile(loss='binary_crossentropy', optimizer=opt, metrics=["accuracy"])
 
 
 # Load X and Y hand labeled examples with heyjoe and other words in them, for training
-Xhl = np.load(TRAINING_PATH + "X_hand_label_train2.npy")
-Yhl = np.load(TRAINING_PATH + "Y_hand_label_train2.npy")
+Xhl1 = np.load(TRAINING_PATH + "X_hand_label_train.npy")
+Yhl1 = np.load(TRAINING_PATH + "Y_hand_label_train.npy")
+
+Xhl2 = np.load(TRAINING_PATH + "X_hand_label_train2.npy")
+Yhl2 = np.load(TRAINING_PATH + "Y_hand_label_train2.npy")
 
 # Load X and Y synthesized data sets with more #activates
 Xa = np.load(TRAINING_PATH + "X14002c.npy")
 Ya = np.load(TRAINING_PATH + "Y14002c.npy")
 
-print(Xhl.shape)
-#print(Yhl.shape)
-print(Xa.shape)
 
-X = np.concatenate((Xhl, Xa))
-Y = np.concatenate((Yhl, Ya))
+X = np.concatenate((Xhl1, Xa, Xhl2))
+Y = np.concatenate((Yhl1, Ya, Yhl2))
 
 # X<anything>.shape should be [#concatenated_examples, Tx, n_freq] 
 # Y<anything>.shape should be [#concatenated_examples, Ty, 1]
@@ -60,7 +60,7 @@ Y = np.concatenate((Yhl, Ya))
 model.fit(X, Y, batch_size = 100, epochs=30, shuffle = True)
 
 
-model.save(MODEL_PATH + "my_model18_14002c_30e_100b_hl2_sagem.h5")    
+model.save(MODEL_PATH + "my_model18_14002c_30e_100b_hl1and2_sagem.h5")    
 
 
 
